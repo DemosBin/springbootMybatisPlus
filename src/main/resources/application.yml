@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    #url: jdbc:h2:file:~/.h2/testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE（数据库持久化到硬盘）
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
+    driver-class-name: org.h2.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 5
+      idleTimeout: 600000
+      connectionTimeout: 30000
+      maxLifetime: 1800000
+    schema: classpath:db/schema.sql
+    data: classpath:db/data.sql
+  h2:
+    console:
+      enabled: true
+      path: /console
+      settings:
+        trace: false
+        web-allow-others: false
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: me.fangbin.springboot.shirodemo.entity, me.fangbin.springboot.shirodemo.dto
+  configuration:
+    map-underscore-to-camel-case: true
